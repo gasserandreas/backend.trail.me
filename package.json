@@ -1,0 +1,22 @@
+{
+  "name": "backend.trail.me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "apply-dev": "terraform workspace select default && terraform apply -auto-approve -var-file=\"terraform.tfvars\"",
+    "apply-test": "terraform workspace select test && terraform apply -auto-approve -var-file=\"terraform.test.tfvars\"",
+    "apply-prod": "terraform workspace select prod && terraform apply -auto-approve -var-file=\"terraform.prod.tfvars\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gasserandreas/testbackend.trail.me.git"
+  },
+  "author": "Andreas Gasser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gasserandreas/backend.trail.me/issues"
+  },
+  "homepage": "https://github.com/gasserandreas/backend.trail.me#readme",
+  "dependencies": {}
+}

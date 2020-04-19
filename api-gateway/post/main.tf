@@ -9,7 +9,7 @@ variable "resource_path" {}
 
 resource "aws_lambda_function" "post_lambda" {
   filename         = "./api-gateway/post/post.zip"
-  function_name    = "liistro_ch_${var.gateway_name}_post"
+  function_name    = "${var.app_name}_${var.gateway_name}_post"
   role             = "${var.lambda_role}"
   handler          = "index.handler"
   runtime          = "nodejs10.x"
