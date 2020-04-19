@@ -38,8 +38,9 @@ variable "api_version" {
 # provider
 provider "aws" {
   region                  = var.app_region
-  shared_credentials_file = var.credentials_file
-  profile                 = var.profile
+  # enabled only in local environment
+  # shared_credentials_file = var.credentials_file
+  # profile                 = var.profile
 }
 
 # prod environment
