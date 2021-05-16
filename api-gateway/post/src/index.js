@@ -17,6 +17,7 @@ exports.handler = function (event, _, callback) {
         },
         body: JSON.stringify({
             valid,
+            data: 'data2',
         }),
     };
     callback(null, response);

@@ -18,6 +18,16 @@ resource "aws_api_gateway_rest_api" "message_api" {
 #   certificate_arn = "${var.certificate_arn}"
 # }
 
+# add calc API endpoint
+module "calc" {
+  source = "./calc"
+
+  app_region = var.app_region
+  app_name = var.app_name
+  account_id = var.account_id
+  api      = aws_api_gateway_rest_api.message_api
+}
+
 # post message api
 resource "aws_api_gateway_resource" "message" {
   path_part   = "message"
