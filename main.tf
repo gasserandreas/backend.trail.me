@@ -55,11 +55,11 @@ provider "aws" {
 module "gateway" {
   source = "./api-gateway"
 
-  app_region      = "${var.app_region}"
-  account_id      = "${var.account_id}"
-  app_name        = "${var.app_name}"
-  api_domain_name = "${var.api_domain_name}"
-  api_version     = "${var.api_version}"
+  app_region      = var.app_region
+  account_id      = var.account_id
+  app_name        = var.app_name
+  api_domain_name = var.api_domain_name
+  api_version     = var.api_version
   # api_stage       = "${var.api_stage}"
   # auth_app_secret = "${var.auth_app_secret}"
   # auth_app_password = "${var.auth_app_password}"
