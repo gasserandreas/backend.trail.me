@@ -1,4 +1,4 @@
 .PHONY: all dist
 
 dist:
-	cd api-gateway/post/src && zip -r ../post.zip ./
+	cd api-gateway/calc/elevation/lambda/dist && zip -r ../dist.zip ./
