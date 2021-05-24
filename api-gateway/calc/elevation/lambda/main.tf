@@ -69,6 +69,37 @@ resource "aws_iam_role_policy" "post_lambda-cloudwatch-log-group" {
   policy = data.aws_iam_policy_document.cloudwatch-log-group-lambda.json
 }
 
+# S3 object definition to store .hgt files
+resource "aws_s3_bucket" "assets_bucket" {
+  // bucket name with account id prefix
+  # bucket = "${var.account_id}-${var.root_domain_name}-${var.bucket_name}"
+  bucket = "${var.account_id}-calc-elevation-assets-bucket"
+
+  // We also need to create a policy that allows anyone to view the content.
+  // This is basically duplicating what we did in the ACL but it's required by
+  // AWS. This post: http://amzn.to/2Fa04ul explains why.
+  policy = <<POLICY
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Sid":"AddPerm",
+      "Effect":"Allow",
+      "Principal": "*",
+      "Action":[
+        "s3:GetObject"
+      ],
+      "Resource":["arn:aws:s3:::${var.account_id}-calc-elevation-assets-bucket/*"]
+    }
+  ]
+}
+POLICY
+}
+
 output "arn" {
   value = aws_lambda_function.post_lambda.arn
+}
+
+output "s3-bucket" {
+  value = aws_iam_role_policy.post_lambda-cloudwatch-log-group
 }
