@@ -5,10 +5,11 @@ import { TileSet } from './node-hgt';
 
 import S3Downloader from './S3Downloader';
 
-const BUCKET = '151434533289-calc-elevation-assets-bucket';
 
 const CACHE_DIR = '/tmp/';
-const MAX_ITEM = 20;
+
+const BUCKET = process.env.S3_BUCKET;
+const MAX_ITEM = process.env.MAX_ITEM;
 
 exports.handler = function (event, _, callback) {
     try {

@@ -12,8 +12,19 @@ resource "aws_lambda_function" "post_lambda" {
   function_name    = var.function_name
   role             = aws_iam_role.lambda_role.arn
   handler          = "index.handler"
-  runtime          = "nodejs10.x"
+  runtime          = "nodejs12.x"
+
+  memory_size      = 256
+  timeout          = 10
+
   source_code_hash = filebase64sha256("./api-gateway/calc/elevation/lambda/dist.zip")
+
+  environment {
+    variables = {
+      S3_BUCKET = aws_s3_bucket.assets_bucket.bucket,
+      MAX_ITEM = 100
+    }
+  }
 }
 
 resource "aws_lambda_permission" "apigw_lambda" {
